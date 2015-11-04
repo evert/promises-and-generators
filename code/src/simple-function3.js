@@ -1,0 +1,5 @@
+function getData() {
+
+    throw "Ooops";
+
+}

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.1",
+        "sabre/event": "dev-master"
+    }
+}

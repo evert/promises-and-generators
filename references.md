@@ -7,6 +7,18 @@ PHP
 Guzzle async
 <http://docs.guzzlephp.org/en/latest/faq.html>
 
+sabre/event
+<http://sabre.io/event/>
+
+ReactPHP
+<http://reactphp.org/>
+
+Icicle.io
+<https://github.com/icicleio/icicle>
+
+amphp
+<https://github.com/amphp>
+
 
 Javascript
 ----------
@@ -22,6 +34,9 @@ You're missing the point of promises
 
 Q
 <https://github.com/kriskowal/q>
+
+Callbacks, Promises, Generators
+<http://www.slideshare.net/wookieb/callbacks-promises-generators-asynchronous-javascript?related=1>
 
 Others
 ------

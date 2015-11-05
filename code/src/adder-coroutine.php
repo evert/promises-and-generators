@@ -1,6 +1,6 @@
 <?php
 
-coroutine(function() {
+$func = function() {
 
     try {
 
@@ -16,5 +16,7 @@ coroutine(function() {
 
     }
 
-});
+};
 
+coroutine($func)
+    ->wait();

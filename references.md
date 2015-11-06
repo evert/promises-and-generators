@@ -43,3 +43,6 @@ Others
 
 httpbin
 <https://httpbin.org/>
+
+What color is your function
+<http://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/>

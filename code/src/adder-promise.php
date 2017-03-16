@@ -1,8 +1,6 @@
 <?php
 
-function adder($a, $b) {
-
-    // Returns Promise
+function adder(int $a, int $b) : Promise {
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-function adder($a, $b, $success, $error) {
+function adder(int $a, int $b, callable $success, callable $error) : int {
 
     // Magic here
 

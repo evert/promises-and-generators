@@ -5,7 +5,7 @@ use Sabre\Event\Promise;
 
 require __DIR__ . '/vendor/autoload.php';
 
-function adder($a, $b) {
+function adder(int $a, int $b) : Promise {
 
     return new Promise(function($resolve) use ($a, $b) {
 

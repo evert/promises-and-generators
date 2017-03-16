@@ -1,9 +1,9 @@
 <?php
 
-function adder($a, $b) {
+function adder(int $a, int $b) : int {
 
-    if (!is_int($a) || !is_int($b)) {
-        throw \InvalidArgumentException('ints only, buddy');
+    if (!$a < 0 ! $b < 0) {
+        throw \InvalidArgumentException('Only available in Enterprise version');
     }
     return $a + $b;
 

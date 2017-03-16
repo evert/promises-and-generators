@@ -4,15 +4,9 @@
 \par
 {\cf8\b class} {\cf19\b Promise} \{\par
 \par
-    {\cf8\b function} {\cf19 __construct}(callable {\cf7 $executor} {\cf4 =} {\cf8\b null});\par
+    {\cf8\b function} {\cf19 then}(callable {\cf7 $onFulfilled} {\cf4 =} {\cf8\b null}, callable {\cf7 $onRejected} {\cf4 =} {\cf8\b null}) {\cf4 :} Promise;\par
 \par
-    {\cf8\b function} {\cf19 then}(callable {\cf7 $onFulfilled} {\cf4 =} {\cf8\b null}, callable {\cf7 $onRejected} {\cf4 =} {\cf8\b null});\par
-\par
-    {\cf8\b function} {\cf19 otherwise}(callable {\cf7 $onRejected});\par
-\par
-    {\cf8\b function} {\cf19 fulfill}({\cf7 $value} {\cf4 =} {\cf8\b null});\par
-\par
-    {\cf8\b function} {\cf19 reject}({\cf7 $reason} {\cf4 =} {\cf8\b null});\par
+    {\cf8\b function} {\cf19 otherwise}(callable {\cf7 $onRejected}) {\cf4 :} Promise;\par
 \par
     {\cf8\b function} {\cf19 wait}();\par
 \par

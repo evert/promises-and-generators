@@ -3,7 +3,7 @@
 function printer() {
 
     while(true) {
-        $message = (yield);
+        $message = yield;
         echo $message, "\n";
     }
 

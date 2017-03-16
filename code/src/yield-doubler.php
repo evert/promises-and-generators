@@ -2,8 +2,8 @@
 
 function generator() {
 
-    echo (yield 5);
-    echo (yield 6);
+    echo yield 5;
+    echo yield 6;
 
 }
 

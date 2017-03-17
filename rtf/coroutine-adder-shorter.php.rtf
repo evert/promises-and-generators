@@ -1,0 +1,15 @@
+{\rtf1\ansi\uc0\deff0{\fonttbl{\f0\fmodern\fprq1\fcharset0;}}{\colortbl;\red136\green136\blue136;\red186\green33\blue33;\red0\green68\blue221;\red102\green102\blue102;\red64\green128\blue128;\red160\green160\blue0;\red25\green23\blue124;\red0\green128\blue0;\red187\green102\blue136;\red187\green102\blue34;\red136\green0\blue0;\red170\green34\blue255;\red153\green153\blue153;\red0\green160\blue0;\red160\green0\blue0;\red255\green0\blue0;\red128\green0\blue128;\red176\green0\blue64;\red0\green0\blue255;\red187\green187\blue187;\red188\green122\blue0;\red0\green0\blue128;\red125\green144\blue41;\red210\green65\blue58;}\f0 {\cf21 <?php}\par
+\par
+{\cf7 $func} {\cf4 =} {\cf8\b function}() \{\par
+\par
+    {\cf7 $result} {\cf4 =} {\cf8\b yield} adder({\cf4 1}, {\cf4 2});\par
+    {\cf7 $result} {\cf4 =} {\cf8\b yield} adder({\cf7 $result}, {\cf4 3});\par
+    {\cf7 $result} {\cf4 =} {\cf8\b yield} adder({\cf7 $result}, {\cf4 4});\par
+\par
+    {\cf8\b echo} {\cf7 $result};\par
+\par
+\};\par
+\par
+coroutine({\cf7 $func})\par
+    {\cf4 ->}{\cf23 wait}();\par
+}

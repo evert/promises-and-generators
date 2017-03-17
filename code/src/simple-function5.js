@@ -1,3 +1,0 @@
-function getData(callback, error) {
-
-}

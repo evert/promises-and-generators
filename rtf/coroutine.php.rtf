@@ -1,0 +1,67 @@
+{\rtf1\ansi\uc0\deff0{\fonttbl{\f0\fmodern\fprq1\fcharset0;}}{\colortbl;\red35\green0\blue206;\red196\green26\blue22;\red28\green1\blue206;\red23\green117\blue0;\red169\green13\blue145;\red0\green0\blue0;\red91\green38\blue154;\red99\green56\blue32;\red63\green110\blue117;\red131\green108\blue40;}\f0 {\cf8 <?php}\par
+\par
+{\cf5 function} {\cf6 coroutine}({\cf6 callable} {\cf6 $gen}) {\cf6 :} {\cf6 Promise} \{\par
+\par
+    {\cf6 $generator} {\cf6 =} {\cf6 $gen}();\par
+    {\cf5 if} ({\cf6 !}{\cf6 $generator} {\cf6 instanceof} {\cf6 Generator}) \{\par
+        {\cf5 throw} {\cf5 new} {\cf6 \\InvalidArgumentException}({\cf2 'You must pass a generator function'});\par
+    \}\par
+\par
+    {\cf6 $promise} {\cf6 =} {\cf5 new} {\cf6 Promise}();\par
+\par
+    {\cf6 $advanceGenerator} {\cf6 =} {\cf5 function}() {\cf5 use} ({\cf6 &}{\cf6 $advanceGenerator}, {\cf6 $generator}, {\cf6 $promise}, {\cf6 &}{\cf6 $lastYieldResult}) \{\par
+\par
+        {\cf5 while} ({\cf6 $generator}{\cf6 ->}{\cf10 valid}()) \{\par
+\par
+            {\cf6 $yieldedValue} {\cf6 =} {\cf6 $generator}{\cf6 ->}{\cf10 current}();\par
+            {\cf5 if} ({\cf6 $yieldedValue} {\cf6 instanceof} {\cf6 Promise}) \{\par
+                {\cf6 $yieldedValue}{\cf6 ->}{\cf10 then}(\par
+                    {\cf5 function}({\cf6 $value}) {\cf5 use} ({\cf6 $generator}, {\cf6 &}{\cf6 $advanceGenerator}, {\cf6 &}{\cf6 $lastYieldResult}) \{\par
+                        {\cf6 $generator}{\cf6 ->}{\cf10 send}({\cf6 $value});\par
+                        {\cf6 $advanceGenerator}();\par
+                    \},\par
+                    {\cf5 function}({\cf6 Throwable} {\cf6 $reason}) {\cf5 use} ({\cf6 $generator}, {\cf6 $advanceGenerator}) \{\par
+                        {\cf6 $generator}{\cf6 ->}{\cf10 throw}({\cf6 $reason});\par
+                        {\cf6 $advanceGenerator}();\par
+                    \}\par
+                ){\cf6 ->}{\cf10 otherwise}({\cf5 function}({\cf6 Throwable} {\cf6 $reason}) {\cf5 use} ({\cf6 $promise}) \{\par
+                    {\cf6 $promise}{\cf6 ->}{\cf10 reject}({\cf6 $reason});\par
+                \});\par
+                {\cf5 break};\par
+            \} {\cf5 else} \{\par
+                {\cf6 $generator}{\cf6 ->}{\cf10 send}({\cf6 $yieldedValue});\par
+            \}\par
+\par
+        \}\par
+\par
+         {\cf5 if} ({\cf6 !}{\cf6 $generator}{\cf6 ->}{\cf10 valid}() {\cf6 &&} {\cf6 $promise}{\cf6 ->}{\cf10 state} {\cf6 ===} {\cf6 Promise}{\cf6 ::}{\cf10 PENDING}) \{\par
+             {\cf6 $returnValue} {\cf6 =} {\cf6 $generator}{\cf6 ->}{\cf10 getReturn}();\par
+\par
+             {\cf4 // The return value is a promise.\par
+}             {\cf5 if} ({\cf6 $returnValue} {\cf6 instanceof} {\cf6 Promise}) \{\par
+                 {\cf6 $returnValue}{\cf6 ->}{\cf10 then}({\cf5 function}({\cf6 $value}) {\cf5 use} ({\cf6 $promise}) \{\par
+                     {\cf6 $promise}{\cf6 ->}{\cf10 fulfill}({\cf6 $value});\par
+                 \}, {\cf5 function}({\cf6 Throwable} {\cf6 $reason}) \{\par
+                     {\cf6 $promise}{\cf6 ->}{\cf10 reject}({\cf6 $reason});\par
+                 \});\par
+             \} {\cf5 else} \{\par
+\par
+                 {\cf6 $promise}{\cf6 ->}{\cf10 fulfill}({\cf6 $returnValue});\par
+\par
+             \}\par
+\par
+\par
+        \}\par
+\par
+    \};\par
+\par
+    {\cf5 try} \{\par
+        {\cf6 $advanceGenerator}();\par
+    \} {\cf5 catch} ({\cf6 Throwable} {\cf6 $e}) \{\par
+        {\cf6 $promise}{\cf6 ->}{\cf10 reject}({\cf6 $e});\par
+    \}\par
+\par
+    {\cf5 return} {\cf6 $promise};\par
+\par
+\}\par
+}

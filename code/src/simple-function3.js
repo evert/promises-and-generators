@@ -1,5 +1,0 @@
-function getData() {
-
-    throw "Ooops";
-
-}
